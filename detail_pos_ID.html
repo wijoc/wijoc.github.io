@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Resume</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Ekko Lightbox -->
+        <link rel="stylesheet" href="assets/plugins/ekko-lightbox/ekko-lightbox.css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Joshua Wicaksono</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#portfolio">Portfolio</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- Detail POS -->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Point of Sales</h2>
+                    <p class="text-justify">Aplikasi Point of Sales berbasis website ini adalah project pribadi yang awalnya bertujuan membantu usaha milik keluarga. 
+                        Namun saya juga berharap aplikasi POS berbasis website ini dapat membantu mikro, kecil dan menengah (UMKM), 
+                        mulai dari pengelolaan produk, kontak supplier dan pelanggan, sampai pada pencatatan transaksi keuangan yang terjadi.
+                        Selain bertujuan untuk kebutuhan pribadi, aplikasi ini juga ditujukan untuk kebutuhan belajar untuk orang orang yang belajar pemrograman.
+                        Jadi saya tekankan diawal dan perlu dipahami bahwa, <b>untuk saat ini aplikasi ini bersifat open source dan tidak untuk diperjual belikan.</b>
+                        <br>
+                        Aplikasi ini dibangun menggunakan bahasa pemrograman php dengan framework Code Igniter 3, MySQL sebagai rdbms. Untuk antarmuka menggunakan template
+                        AdminLTE dengan bantuan css framework bootstrap v4.
+                    </p>
+                    <p>
+                        Adapun fitur yang tersedia sebagai berikut : 
+                        <ul class="fa-ul mb-0">
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Product Management
+                                <ul>
+                                    <li>Unit & Category management</li>
+                                    <li>Product management</li>
+                                    <li>Stock (Good, damaged, opname stock) management, including stock mutation </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Contact
+                                <ul>
+                                    <li>Supplier Contact</li>
+                                    <li>Customer Contact</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Transaction
+                                <ul>
+                                    <li>Purchase Transaction</li>
+                                    <li>Sale Transaction</li>
+                                    <li>Expense and Revenue</li>
+                                    <li>Return to Supplier (exchange of goods and refunds)</li>
+                                    <li>Return from Customer (exchange of goods and refunds)</li>
+                                    <li>installment record (customer installments and installments to suppliers)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Setting
+                                <ul>
+                                    <li>Shop setting</li>
+                                    <li>Bank account management</li>
+                                    <li>User management</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        Adapun user level yang tersedia diurutkan dari level tertinggi, sebagai berikut :
+                        <ul class="fa-ul mb-0">
+                            <li>
+                                <span class="fa-li"><i class="fas fa-user"></i></span>
+                                <b>Administrator</b>
+                                <ul>
+                                    <li>Access permission : all features.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-user"></i></span>
+                                <b>Owner</b>
+                                <ul>
+                                    <li>Access permission : All features, except user management and stock mutation.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-user"></i></span>
+                                <b>Warehouse</b>
+                                <ul>
+                                    <li>Access permission : Product and stock related feature.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-user"></i></span>
+                                <b>Cashier</b>
+                                <ul>
+                                    <li>Access permission : Sale, expense, revenue, return and customer installment transaction. </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-user"></i></span>
+                                <b>Purchasing admin</b>
+                                <ul>
+                                    <li>Access permission : Purchase, expense, revenue, return to supplier and installment record transaction. </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </section>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Ekko Lightbox -->
+        <script src="assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
