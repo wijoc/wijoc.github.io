@@ -5,7 +5,7 @@
     */
 $(document).ready(function () {
     "use strict"; // Start of use strict
-
+    $('[data-toggle="tooltip"]').tooltip()
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (
