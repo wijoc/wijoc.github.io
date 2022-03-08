@@ -1,0 +1,2647 @@
+openapi: 3.0.0
+info:
+  title: Demo REST API POS
+  description: Dokumentasi API yang tersedia.
+  version: 0.1.1
+ 
+servers:
+  - url: https://zpos.epizy.com/v1/
+    description: URL untuk demo endpoint.
+    
+tags:
+- name: "Product"
+  description: "Access to product : Product & Stock"
+- name: "Category"
+  description: "Access to category"
+- name: "Unit"
+  description: "Access to unit / satuan"
+- name: "Supplier"
+  description: "Access to supplier contact"
+- name: "Customer"
+  description: "Access to customer / pelanggan contact"
+- name: "Purchases"
+  description: "Operations about Purchases Transaction"
+- name: "Sales"
+  description: "Operations about Sales"
+- name: "user"
+  description: "Operations about user"
+- name: "Bank Account"
+  description: "Operations about Bank & Bank Account"
+  # externalDocs:
+  #   description: "Find out more about our store"
+  #   url: "http://swagger.io"
+
+paths:
+  /products:
+    get:
+      tags:
+      - "Product"
+      summary: "Select all Product"
+      description: "Select all available Product"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchProduct"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "categoryID"
+          in: "query"
+          description: "optional parameters to get product on specific category"
+          required: false
+          schema:
+            type : boolean
+            default: false
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Produk ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_code: 
+                          type: string
+                          example: '130030'
+                        data_name: 
+                          type: string
+                          example: 'Product A'
+                        data_category: 
+                          type: string
+                          example: 'Kategori A'
+                        data_unit: 
+                          type: string
+                          example: 'Satuan A'
+                        data_purchase_price: 
+                          type: integer
+                          example: 75000.10
+                        data_selling_price: 
+                          type: integer
+                          example: 75000.10
+                        good_stock:
+                          type: integer
+                          example: 1
+    post:
+      tags: 
+      - "Product"
+      summary: "Add new product"
+      description: "supported content-type : multipart/form-data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-add-product"
+      responses:
+        "201":
+          description: "Responses if success creating produk data."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: 'Berhasil menyimpan data produk !'
+        "400":
+          description: "Responses if error in data validation."
+          content: 
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/ProductError"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /products/{productID}:
+    get:
+      tags:
+      - "Product"
+      summary: "Select Product by product_id or product_code"
+      description: "ONLY USE 1 path parameter (productID or productCode)"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/productID"
+        - $ref: "#/components/parameters/productCode"
+        - name: "necessity"
+          in: "query"
+          description: "use 'edit' to get encoded category_id & unit_id. use 'detail' for category_name and unit_name"
+          required: true
+          schema:
+            type : string
+            minimum: 1
+        - name: "mutation"
+          in: "query"
+          description: "optional parameter for stock mutation related to this product."
+          required: false
+          schema:
+            type : boolean
+            default: false
+      responses:
+        '200':
+          description: "Responses if request is success."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  data: 
+                    type: object
+                    properties: 
+                      data_id: 
+                        type: string
+                        example: 'MQ%3D%3D'
+                      data_code: 
+                        type: string
+                        example: '130030'
+                      data_name: 
+                        type: string
+                        example: 'Product A'
+                      data_category: 
+                        type: string
+                        example: 'Kategori A'
+                      data_unit: 
+                        type: string
+                        example: 'Satuan A'
+                      data_purchase_price: 
+                        type: integer
+                        example: 75000.10
+                      data_selling_price: 
+                        type: integer
+                        example: 75000.10
+                      good_stock: 
+                        type: integer
+                        example: 1
+                      mutation: 
+                        type: array
+                        items: 
+                          properties: 
+                            data_name: 
+                              type: string
+                              example: "Product A"
+                            dsm_from: 
+                              type: string
+                              example: "Stock Good"
+                            dsm_to: 
+                              type: string
+                              example: "Stock Opname"
+                            dsm_qty: 
+                              type: integer
+                              example: 1
+                            dsm_ps: 
+                              type: string
+                              example: "Long text"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if category not found or id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+    delete:
+      tags:
+      - "Product"
+      summary: "Delete Product"
+      description: "Delete data by product_id or product_code. parameter 'type' for determine soft-delete or permanent-delete. use 'soft' for soft-delete. use 'hard' for hard delete"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/productID"
+        - $ref: "#/components/parameters/productCode"
+        - name: "type"
+          in: "query"
+          description: "use 'soft' for soft-delete. use 'hard' for permanent delete"
+          required: true
+          schema:
+            type: string
+            enum: [soft,hard]
+      responses:
+        '200':
+          $ref: "#/components/responses/deleted-data-200"
+        '400':
+          description: "Responses if parameter 'type' not provided."
+          content:
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Provide parameter "type"'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found or invalid id."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /products/product-edit/{productID}:
+    post:
+      tags: 
+      - "Product"
+      summary: "Edit or Update product"
+      description: "supported content-type : multipart/form-data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-edit-product"
+      responses:
+        "200":
+          description: "Responses if success creating produk data."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: 'Berhasil mengubah data produk !'
+        "400":
+          description: "Responses if error in data validation."
+          content: 
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/ProductError"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /products-autocomplete:
+    get:
+      tags:
+      - "Product"
+      summary: "Select Product for autocomplete"
+      description: "Select available Product with keyword"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - name: "search"
+          in: "query"
+          description: "parameters search keyword"
+          required: true
+          schema:
+            type : string
+            example: 'Keyword goes here'
+      responses:
+        '200':
+          description: "Response if product found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  label:
+                    type: string
+                    example: 'product name'
+                  prd_id:
+                    type: string
+                    example: 'Mg%3D%3D'
+                  prd_barcode:
+                    type: string
+                    example: '10001'
+                  prd_harga_beli:
+                    type: integer
+                    example: 10000.00
+  /stock-product:
+    get:
+      tags:
+      - "Product"
+      summary: "Select Product Stock"
+      description: "Select initial and current product stock."
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchProduct"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: "Data ditemukan !"
+                  data: 
+                    type: array
+                    items: 
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_code: 
+                          type: string
+                          example: '130030'
+                        data_name: 
+                          type: string
+                          example: 'Product A'
+                        data_g_stock: 
+                          type: integer
+                          example: 1
+                        data_ng_stock: 
+                          type: integer
+                          example: 1
+                        data_op_stock: 
+                          type: integer
+                          example: 1
+                        ini_g_stock: 
+                          type: integer
+                          example: 1
+                        ini_ng_stock: 
+                          type: integer
+                          example: 1
+                        ini_op_stock: 
+                          type: integer
+                          example: 1
+  /stock-product/{productID}:
+    get:
+      tags:
+      - "Product"
+      summary: "Select Product stock by product id or product code"
+      description: "Select product stock by product id or product code"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/productID"
+        - $ref: "#/components/parameters/productCode"
+        - name: "mutation"
+          in: "query"
+          description: "optional parameter for stock mutation related to this product."
+          required: false
+          schema:
+            type : boolean
+            default: false
+      responses:
+        '200':
+          description: "Responses if request is success."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  data: 
+                    type: object
+                    properties: 
+                      data_id: 
+                        type: string
+                        example: 'MQ%3D%3D'
+                      data_code: 
+                        type: string
+                        example: '130030'
+                      data_name: 
+                        type: string
+                        example: 'Product A'
+                      stock: 
+                        type: object
+                        properties: 
+                          data_g_stock: 
+                            type: integer
+                            example: 1
+                          data_ng_stock: 
+                            type: integer
+                            example: 1
+                          data_op_stock: 
+                            type: integer
+                            example: 1
+                          ini_g_stock: 
+                            type: integer
+                            example: 1
+                          ini_ng_stock: 
+                            type: integer
+                            example: 1
+                          ini_op_stock: 
+                            type: integer
+                            example: 1
+                      mutation: 
+                        type: array
+                        items: 
+                          properties: 
+                            data_name: 
+                              type: string
+                              example: "Product A"
+                            dsm_from: 
+                              type: string
+                              example: "Stock Good"
+                            dsm_to: 
+                              type: string
+                              example: "Stock Opname"
+                            dsm_qty: 
+                              type: integer
+                              example: 1
+                            dsm_ps: 
+                              type: string
+                              example: "Long text"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if id not found or id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+  /stock-mutation:
+    get:
+      tags:
+      - "Product"
+      summary: "Select stock mutation"
+      description: "Select stock mutation."
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchMutation"
+          in: "query"
+          description: "optional parameters, use this in custom search box for mutation code"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "from"
+          in: "query"
+          description: "optional parameters, use to show data specifically the source of mutations / where stock mutations from. SG : Stock Good, SNG : Damaged Stock, SO: Opname"
+          required: false
+          schema:
+            type : string
+            enum: [SG,SNG,SO]
+        - name: "to"
+          in: "query"
+          description: "optional parameters, use to show data where the mutations goes. SG : Stock Good, SNG : Damaged Stock, SO: Opname"
+          required: false
+          schema:
+            type : string
+            enum: [SG,SNG,SO]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  count_data: 
+                    type: integer
+                    example: 1
+                  data: 
+                    type: array
+                    items: 
+                      properties: 
+                        data_date:
+                          type: string
+                          example: '2020-01-01'
+                        data_code:
+                          type: string
+                          example: 'SM1220305000001'
+                        data_product:
+                          type: string
+                          example: '1001 - Product Name'
+                        data_from:
+                          type: string
+                          example: 'Stock Bagus'
+                        data_to:
+                          type: string
+                          example: 'Stock Rusak'
+                        data_qty:
+                          type: integer
+                          example: 1
+                        data_ps:
+                          type: string
+                          example: 'Long text'
+                  recordsTotal:
+                    type: integer
+                    example: 1
+                  recordsFiltered:
+                    type: integer
+                    example: 1
+    post:
+      tags:
+      - "Product"
+      summary: "Add new stock mutation"
+      description: "Add new stock mutation."
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        description: "New mutation data. prd_id is encoded"
+        required: true
+        content: 
+          application/x-www-form-urlencoded: 
+            schema: 
+              type: object
+              properties: 
+                postPrdID:
+                  type: string
+                  example: 'MQ%3D%3D'
+                postStockDate:
+                  type: string
+                  example: '2020-01-01'
+                postStockA:
+                  type: string
+                  enum:
+                    - SG
+                    - SNG
+                    - SO
+                postStockB:
+                  type: string
+                  enum:
+                    - SG
+                    - SNG
+                    - SO
+                postStockQty:
+                  type: integer
+                  minimum: 1
+                postStockPS:
+                  type: string
+                  example: 'Long text'
+          application/json:
+            schema: 
+              type: object
+              properties: 
+                postPrdID:
+                  type: string
+                  example: 'MQ%3D%3D'
+                postStockDate:
+                  type: string
+                  example: '2020-01-01'
+                postStockA:
+                  type: string
+                  enum:
+                    - SG
+                    - SNG
+                    - SO
+                postStockB:
+                  type: string
+                  enum:
+                    - SG
+                    - SNG
+                    - SO
+                postStockQty:
+                  type: integer
+                  minimum: 1
+                postStockPS:
+                  type: string
+                  example: 'Long text'
+      responses:
+        '201':
+          description: "Responses if success input new data. product -> product_code"
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: 'Berhasil melakukan mutasi stok!'
+                  product:
+                    type: string
+                    example: '10001'
+        '400':
+          description: "Responses if error in data validation."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  errorStockDate:
+                    type: string
+                    example: 'Tidak Valid!'
+                  errorStockA:
+                    type: string
+                    example: 'Pilih opsi tersedia!'
+                  errorStockB:
+                    type: string
+                    example: 'Pilih opsi tersedia!'
+                  errorStockQty:
+                    type: string
+                    example: 'harus lebih dari 0!'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /stock-mutation/{mutationCode}:
+    get:
+      tags:
+      - "Product"
+      summary: "Select stock mutation by sm_code"
+      description: "Select stock mutation by sm_code."
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - name: "mutationCode"
+          description: "mutation code goes in path"
+          in: "path"
+          required: true
+          schema:
+            type : string
+            example: 'SM1220305000001'
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  count_data: 
+                    type: integer
+                    example: 1
+                  data: 
+                    type: object
+                    properties: 
+                      data_date:
+                        type: string
+                        example: '2020-01-01'
+                      data_code:
+                        type: string
+                        example: 'SM1220305000001'
+                      data_product:
+                        type: string
+                        example: '1001 - Product Name'
+                      data_from:
+                        type: string
+                        example: 'Stock Bagus'
+                      data_to:
+                        type: string
+                        example: 'Stock Rusak'
+                      data_qty:
+                        type: integer
+                        example: 1
+                      data_ps:
+                        type: string
+                        example: 'Long text'
+                  recordsTotal:
+                    type: integer
+                    example: 1
+                  recordsFiltered:
+                    type: integer
+                    example: 1
+  /categories:
+    get: 
+      tags:
+      - "Category"
+      summary: "Select all Category"
+      description: "Select all available Category"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchCategory"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "necessity"
+          in: "query"
+          description: "optional parameters to get response category_id & category_name only, such as option in product form, accepted value : 'option'."
+          required: false
+          schema:
+            type : string
+            minimum: 1
+      # consumes:
+      # - "application/json"
+      # - "application/x-www-form-urlencoded"
+      # produces:
+      # - "application/json"
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data:
+                    type: "boolean"
+                    example: false
+                  message:
+                    type: "string"
+                    example: "Data Kategori ditemukan"
+                  data:
+                    type: "array"
+                    items: 
+                      type: object
+                      properties:
+                        data_id:
+                          type: "string"
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: "string"
+                          example: 'Kategori A'
+                        data_product:
+                          type: integer
+                          example: 1
+    post: 
+      tags: 
+      - "Category"
+      summary: "Add new category"
+      description: "supported content-type : x-www-form-urlencoded or json"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        description: "New category data."
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateCategory"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateCategory"
+      # produces:
+      # - "application/json"
+      responses:
+        "201":
+          description: "Responses if success creating category data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menyimpan data category !'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CategoryError"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /categories/{categoryID}:
+    get:
+      tags:
+      - "Category"
+      summary: "Select Category"
+      description: "Select Category on categroy id"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/categoryID"
+        }
+      ]
+      responses:
+        '200':
+          description: "Responses if request is success."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  count_data:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        data_id:
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'Canal'
+                        data_product:
+                          type: integer
+                          example: 1
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if category not found or id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+    put:
+      tags:
+      - "Category"
+      summary: "Update Category"
+      description: "Update Data Category berdasar category_id"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/categoryID"
+        }
+      ]
+      requestBody: 
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateCategory"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateCategory"
+      responses:
+        "201":
+          description: "Responses if success creating category data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menyimpan data category !'
+        "400":
+          description: "Responses if error in data validation or parameter id not provided."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CategoryError"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+    delete:
+      tags:
+      - "Category"
+      summary: "Delete Category"
+      description: "Delete data by category_id"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/categoryID"
+        }
+      ]
+      responses:
+        '204':
+          description: "Responses if data is deleted"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found or invalid id."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /units:
+    get: 
+      tags:
+      - "Unit"
+      summary: "Select all Unit"
+      description: "Select all available Unit"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchUnit"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "necessity"
+          in: "query"
+          description: "optional parameters to get response unit_id & unit_name only, such as option in product form, accepted value : 'option'."
+          required: false
+          schema:
+            type : string
+            minimum: 1
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Satuan ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'Batang'
+                        data_product: 
+                          type: integer
+                          example: 1
+                  recordsTotal:
+                    type: integer
+                    example: 100
+                  recordsFiltered:
+                    type: integer
+                    example: 100
+    post:
+      tags:
+      - "Unit"
+      summary: "Input new unit"
+      description: "Input new unit. Allowed content-type x-www-form-urlencoded & application/json"
+      security: [
+        {
+          'BearerAuth': []
+        },
+      ]
+      requestBody:
+        required: true
+        content:
+         application/x-www-form-urlencoded: 
+            schema:
+              $ref: "#/components/schemas/CreateUpdateUnit"
+         application/json: 
+            schema:
+              $ref: "#/components/schemas/CreateUpdateUnit"
+      responses:
+        "201":
+          description: "Responses if success creating unit data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menyimpan data unit !'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: object
+                    properties: 
+                      errorName: 
+                        type: string
+                        example: "Satuan sudah tersedia"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /units/{unitsID}:
+    get:
+      tags:
+      - "Unit"
+      summary: "Select Unit by unit ID"
+      description: "Select Unit by unit ID"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/unitID"
+        }
+      ]
+      responses: 
+        '200':
+          description: "Responses if request is success."
+          content: 
+            application/json: 
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  count_data:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        data_id:
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'Batang'
+                        data_product:
+                          type: integer
+                          example: 1
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if category not found or id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+    put:
+      tags:
+      - "Unit"
+      summary: "Update unit"
+      description: "Update Data unit by unit_id. accepted content-type x-form-urlencoded or application/json"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/unitID"
+        }
+      ]
+      requestBody: 
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateUnit"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUpdateUnit"
+      responses:
+        "201":
+          description: "Responses if success creating unit data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menyimpan data !'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: object
+                    properties: 
+                      errorName: 
+                        type: string
+                        example: "Satuan sudah tersedia"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+    delete:
+      tags:
+      - "Unit"
+      summary: "Delete unit"
+      description: "Delete data by unit_id"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/unitID"
+        }
+      ]
+      responses:
+        '204':
+          description: "Responses if data is deleted"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found or invalid id."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /suppliers:
+    get: 
+      tags:
+      - "Supplier"
+      summary: "Select all supplier data"
+      description: "Select all available supplier data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - name: "search"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "order"
+          in: "query"
+          description: "optional parameters, use this for sort data by supp_name"
+          required: false
+          schema:
+            type: string
+            enum: [asc,desc]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Supplier ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'supplier name'
+                        data_contact:
+                          type: string
+                          example: 'contact name'
+                        data_telp:
+                          type: string
+                          example: '012345667'
+                        data_email:
+                          type: string
+                          example: 'valid@email.com'
+                        data_address:
+                          type: string
+                          example: 'Long Text'
+    post:
+      tags:
+      - "Supplier"
+      summary: "Add new supplier data"
+      description: "Add new supplier data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-supplier"
+      responses:
+        "201":
+          description: "Responses if success creating supplier data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menambahkan data supplier!'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: array
+                    properties:
+                      errorSuppNama:
+                        type: string
+                        example: 'Supplier name'
+                      errorSuppKontak:
+                        type: string
+                        example: 'Contact name'
+                      errorSuppTelp:
+                        type: string
+                        example: '023456789'
+                      errorSuppEmail:
+                        type: string
+                        example: 'valid@email.com'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /suppliers/{supplierID}:
+    get:
+      tags:
+      - "Supplier"
+      summary: "get supplier data by supplier_data"
+      description: "supplier_id must be encoded. example : 'MQ%3D%3D'"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/supplierID"
+        }
+      ]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Supplier ditemukan'
+                  data: 
+                    type: object
+                    properties: 
+                      data_id: 
+                        type: string
+                        example: 'MQ%3D%3D'
+                      data_name: 
+                        type: string
+                        example: 'supplier name'
+                      data_contact:
+                        type: string
+                        example: 'contact name'
+                      data_telp:
+                        type: string
+                        example: '012345667'
+                      data_email:
+                        type: string
+                        example: 'valid@email.com'
+                      data_address:
+                        type: string
+                        example: 'Long Text'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+    put:
+      tags:
+      - "Supplier"
+      summary: "Update supplier data"
+      description: "Update supplier data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/supplierID"
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-supplier"
+      responses:
+        "200":
+          description: "Responses if success update supplier data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil mengubah data supplier!'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: array
+                    properties:
+                      errorSuppNama:
+                        type: string
+                        example: 'Supplier name'
+                      errorSuppKontak:
+                        type: string
+                        example: 'Contact name'
+                      errorSuppTelp:
+                        type: string
+                        example: '023456789'
+                      errorSuppEmail:
+                        type: string
+                        example: 'valid@email.com'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+    delete:
+      tags:
+      - "Supplier"
+      summary: "Delete supplier data"
+      description: "Delete supplier data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/supplierID"
+        }
+      ]
+      responses:
+        '204':
+          description: "Responses if data is deleted"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found or invalid id."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /option-suppliers:
+    get: 
+      tags:
+      - "Supplier"
+      summary: "Select all supplier data for option in trans purchase form"
+      description: "Select all available supplier data for option in trans purchase form"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - name: "keyword"
+          in: "query"
+          description: "parameters search keyword"
+          required: true
+          schema:
+            type : string
+            example: 'Keyword goes here'
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: 'Data Supplier ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'supplier name'
+                        data_contact:
+                          type: string
+                          example: 'contact name'
+                        data_telp:
+                          type: string
+                          example: '012345667'
+                        data_email:
+                          type: string
+                          example: 'valid@email.com'
+                        data_address:
+                          type: string
+                          example: 'Long Text'    
+  /customers:
+    get: 
+      tags:
+      - "Customer"
+      summary: "Select all customer data"
+      description: "Select all available customer data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - name: "search"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+        - name: "order"
+          in: "query"
+          description: "optional parameters, use this for sort data by customer_name"
+          required: false
+          schema:
+            type: string
+            enum: [asc,desc]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Customer ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        data_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        data_name: 
+                          type: string
+                          example: 'supplier name'
+                        data_telp:
+                          type: string
+                          example: '012345667'
+                        data_email:
+                          type: string
+                          example: 'valid@email.com'
+                        data_address:
+                          type: string
+                          example: 'Long Text'
+    post:
+      tags:
+      - "Customer"
+      summary: "Add new customer data"
+      description: "Add new customer data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-customer"
+      responses:
+        "201":
+          description: "Responses if success creating customer data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil menambahkan data customer!'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: array
+                    properties:
+                      errorCtmName:
+                        type: string
+                        example: 'Customer name'
+                      errorCtmPhone:
+                        type: string
+                        example: '023456789'
+                      errorCtmEmail:
+                        type: string
+                        example: 'valid@email.com'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /customers/{customersID}:
+    get:
+      tags:
+      - "Customer"
+      summary: "get customer data by customer_id"
+      description: "customer_id must be encoded. example : 'MQ%3D%3D'"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/customerID"
+        }
+      ]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data customer ditemukan'
+                  data: 
+                    type: object
+                    properties: 
+                      data_id: 
+                        type: string
+                        example: 'MQ%3D%3D'
+                      data_name: 
+                        type: string
+                        example: 'customer name'
+                      data_telp:
+                        type: string
+                        example: '012345667'
+                      data_email:
+                        type: string
+                        example: 'valid@email.com'
+                      data_address:
+                        type: string
+                        example: 'Long Text'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+    put:
+      tags:
+      - "Customer"
+      summary: "Update customer data"
+      description: "Update customer data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/customerID"
+        }
+      ]
+      requestBody:
+        $ref: "#/components/requestBodies/requestBody-customer"
+      responses:
+        "200":
+          description: "Responses if success update customer data."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Berhasil mengubah data customer!'
+        "400":
+          description: "Responses if error in data validation."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: true
+                  message:
+                    type: array
+                    properties:
+                      errorSuppNama:
+                        type: string
+                        example: 'Supplier name'
+                      errorSuppTelp:
+                        type: string
+                        example: '023456789'
+                      errorSuppEmail:
+                        type: string
+                        example: 'valid@email.com'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found / id is not provided / id is invalid."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        '415':
+          $ref: '#/components/responses/unsupported-content-type'
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+    delete:
+      tags:
+      - "Customer"
+      summary: "Delete customer data"
+      description: "Delete customer data"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters: [
+        {
+          $ref: "#/components/parameters/customerID"
+        }
+      ]
+      responses:
+        '204':
+          description: "Responses if data is deleted"
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/not-allowed'
+        '404':
+          description: "Responses if data not found or invalid id."
+          content:
+            application/json: 
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/InvalidID"
+                  - $ref: "#/components/schemas/DataNotFound"
+                  - $ref: "#/components/schemas/ProvideanID"
+        "500":
+          $ref: '#/components/responses/failed-to-process'
+  /banks:
+    get: 
+      tags:
+      - "Bank Account"
+      summary: "Select bank data for option"
+      description: "Select bank data for option"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchBank"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Customer ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        bank_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        bank_code: 
+                          type: string
+                          example: '002'
+                        bank_name:
+                          type: string
+                          example: 'BRI'
+  # /banks/(bankCode):
+  /bank-accounts:
+    get: 
+      tags:
+      - "Bank Account"
+      summary: "Select bank data for option"
+      description: "Select bank data for option"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      parameters:
+        - $ref: "#/components/parameters/length"
+        - $ref: "#/components/parameters/start"
+        - $ref: "#/components/parameters/search"
+        - name: "searchAccount"
+          in: "query"
+          description: "optional parameters, use this for custom search box"
+          required: false
+          schema:
+            type : string
+            example: 'Keyword goes here'
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  count_data: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: 'Data Satuan ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        account_id: 
+                          type: string
+                          example: 'MQ%3D%3D'
+                        account_bank: 
+                          type: string
+                          example: 'BRI'
+                        account_number: 
+                          type: integer
+                          example: 123233
+                        account_name:
+                          type: string
+                          example: 'Rekening 1'
+                  recordsTotal:
+                    type: integer
+                    example: 100
+                  recordsFiltered:
+                    type: integer
+                    example: 100
+  # /bank-accounts/(accountID):
+  /purchase-cart:
+    get: 
+      tags:
+      - "Purchases"
+      summary: "Purchases shopping cart"
+      description: "Purchases shopping cart"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: false
+                  count_data:
+                    type: integer
+                    example: 1
+                  trans: 
+                    type: string
+                    example: 'Purchase'
+                  message:
+                    type: string
+                    example: 'Data ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        cart_list:
+                          type: array
+                          items: 
+                            type: object
+                            properties:
+                              cart_id: 
+                                type: string
+                                example: 'MQ%3D%3D'
+                              cart_name: 
+                                type: string
+                                example: 'Nama Produk'
+                              cart_amount:
+                                type: integer
+                                example: 10
+                              cart_price:
+                                type: integer
+                                example: 1000
+                              cart_total:
+                                type: integer
+                                example: 10000
+                        total_payment:
+                          type: integer
+                          example: 10000
+  # /purchase-cart/{productID}:
+    # delete:
+  # /purchases:
+    # get:
+    # post:
+  # /purchase-installment
+  /sale-cart:
+    get: 
+      tags:
+      - "Sales"
+      summary: "Sales shopping cart"
+      description: "Sales shopping cart"
+      security: [
+        {
+          'BearerAuth': []
+        }
+      ]
+      responses:
+        "200":
+          description: "Responses if request is success."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status: 
+                    type: boolean
+                    example: false
+                  count_data:
+                    type: integer
+                    example: 1
+                  trans: 
+                    type: string
+                    example: 'Sales'
+                  message:
+                    type: string
+                    example: 'Data ditemukan'
+                  data: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        cart_list:
+                          type: array
+                          items: 
+                            type: object
+                            properties:
+                              cart_id: 
+                                type: string
+                                example: 'MQ%3D%3D'
+                              cart_name: 
+                                type: string
+                                example: 'Nama Produk'
+                              cart_amount:
+                                type: integer
+                                example: 10
+                              cart_price:
+                                type: integer
+                                example: 1000
+                              cart_total:
+                                type: integer
+                                example: 10000
+                              disc_percent:
+                                type: integer
+                                example: 1
+                              disc_price:
+                                type: integer
+                                example: 10000
+                        total_payment:
+                          type: integer
+                          example: 10000
+  # /sales
+  # /sale-installment
+components:
+  securitySchemes: # Use one of the following 2
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+  parameters:
+    length:
+      name: "length"
+      in: "query"
+      description: "optional parameters, for the amount of data requested"
+      required: false
+      schema:
+        type : integer
+        minimum: 0
+        default: 0
+    start:
+      in: "query"
+      name: "start"
+      description: "optional parameters, for the offset / start of data requested"
+      required: false
+      schema:
+        type : integer
+        minimum: 0
+        default: 0
+    search:
+      name: "search"
+      in: "query"
+      description: "optional array parameters, for default searching box in datatable. value must store in search['value'] = 'keyword goes here'"
+      required: false
+      schema:
+        type : array
+        items: 
+          properties:
+            value:
+              type: string
+              example: "Category A"
+    productID:
+      name: "productID"
+      description: "product ID encoded. example : 'MQ%3D%3D'"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: 'MQ%3D%3D'
+    productCode:
+      name: "productCode"
+      description: "SUBTITUTION FOR PARAMETER 'productID'. Use for path /products/{productID or productCode} & /products/product-edit/{productID or productCode}"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: 10001
+    unitID:
+      name: "unitID"
+      description: "Unit ID is encoded"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: MQ%3D%3D
+    categoryID:
+      name: "categoryID"
+      description: "Category ID encoded, example : 'MQ%3D%3D'"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: MQ%3D%3D
+    supplierID:
+      name: "supplierID"
+      description: "Supplier ID encoded, example : 'MQ%3D%3D'"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: MQ%3D%3D
+    customerID:
+      name: "custimerID"
+      description: "custimer ID encoded, example : 'MQ%3D%3D'"
+      in: "path"
+      required: true
+      schema:
+        type : string
+        example: MQ%3D%3D
+  schemas:
+    noJWT:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Provide a JSON Web Token!'
+    sessionExpired:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Session id is invalid!'
+    JWTException:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+    ProvideanID:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Please provide an ID'
+    DataNotFound:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Satuan tidak ditemukan !'
+    InvalidID:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Invalid ID'
+    notAllowed:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Not Allowed!'
+    failed-to-process-data:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Kesalahan sistem. Gagal menyimpan/ mengubah / menghapus data!'
+    unsupportedContentType:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Content-type not supported!'
+    ProductError:
+      type: object
+      properties:
+        error_msg:
+          type: string
+          example: 'Invalid Input'
+        errorCode:
+          type: string
+          example: 'Kope Produk sudah digunakan'
+        errorName:
+          type: string
+          example: 'Nama Produk sudah digunakan'
+        errorCategory:
+          type: string
+          example: 'Kategori tidak ditemukan'
+        errorPPrice:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorSPrice:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorUnit:
+          type: string
+          example: 'Satuan tidak ditemukan'
+        errorContains:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorStockG:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorStockNG:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorStockOP:
+          type: string
+          example: 'Harus lebih dari 0'
+        errorImg:
+          type: string
+          example: 'File Not Allowed !'
+    CreateUpdateCategory:
+      type: object
+      properties:
+        postCatName:
+          type: string
+          example: 'Category Name'
+    CategoryError:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: false
+        message:
+          type: object
+          properties:
+            errorName:
+              type: string
+              example: "Category sudah tersedia"
+    CreateUpdateUnit:
+      type: object
+      properties:
+        postUnitName:
+          type: string
+          example: 'Nama Unit'
+  responses:
+    unauthorized:
+      description: "Responses if user not authorized (401)."
+      content: 
+        application/json:
+          schema:
+            oneOf:
+              - $ref: "#/components/schemas/noJWT"
+              - $ref: "#/components/schemas/sessionExpired"
+              - $ref: "#/components/schemas/JWTException"
+    unsupported-content-type:
+      description: "Response for unsupported contentType. Only accept application/x-www-form-urlencoded or application/json"
+      content: 
+        application/json:
+          schema:
+            $ref: "#/components/schemas/unsupportedContentType"
+    failed-to-process:
+      description: "Responses if failed process (input/update/delete) data."
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/failed-to-process-data"
+    not-allowed:
+      description: "Responses for : user authorized, but not allowed to access endpoint"
+      content: 
+        application/json:
+          schema:
+            $ref: "#/components/schemas/notAllowed"
+    deleted-data-200:
+      description: "Responses for deleted data with soft-delete. using 200 status code with message"
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: 'Data telah dihapus! Penghapusan TIDAK PERMANEN, data transaksi tidak berubah'
+  requestBodies:
+    requestBody-add-product:
+      description: "New product data"
+      required: true
+      content: 
+        multipart/form-data: 
+          schema: 
+            type: object
+            properties: 
+              postCode: 
+                type: string
+                example: '10001'
+              postName: 
+                type: string
+                example: 'Product A'
+              postCategory: 
+                type: string
+                example: 'MQ%3%3%4'
+              postPPrice: 
+                type: integer
+                example: 10000.00
+                minimum: 0
+              postSPrice: 
+                type: integer
+                example: 10000.00
+                minimum: 0
+              postUnit: 
+                type: string
+                example: 'MQ%3%3%4'
+              postContains: 
+                type: integer
+                example: 1
+                minimum: 0
+              postStockG: 
+                type: integer
+                example: 1
+                minimum: 0
+              postStockNG: 
+                type: integer
+                example: 1
+                minimum: 0
+              postStockOP: 
+                type: integer
+                example: 1
+                minimum: 0
+              postImg: 
+                type: string
+                format: binary
+    requestBody-edit-product:
+      description: "New product data. Note : category_id & unit_id is encoded"
+      required: true
+      content: 
+        multipart/form-data: 
+          schema: 
+            type: object
+            properties: 
+              postCode: 
+                type: string
+                example: '10001'
+              postName: 
+                type: string
+                example: 'Product A'
+              postCategory: 
+                type: string
+                example: 'MQ%3%3%4'
+              postPPrice: 
+                type: integer
+                example: 10000.00
+                minimum: 0
+              postSPrice: 
+                type: integer
+                example: 10000.00
+                minimum: 0
+              postUnit: 
+                type: string
+                example: 'MQ%3%3%4'
+              postContains: 
+                type: integer
+                example: 1
+                minimum: 0
+              postImg: 
+                type: string
+                format: binary
+    requestBody-supplier:
+      description: "Form supplier data."
+      required: true
+      content: 
+        application/x-www-form-urlencoded: 
+          schema: 
+            type: object
+            properties: 
+              postSuppNama:
+                type: string
+                example: 'Supplier name'
+              postSuppKontak:
+                type: string
+                example: 'Contact name'
+              postSuppEmail:
+                type: string
+                example: 'valid@email.com'
+              postSuppTelp:
+                type: string
+                example: '023456789'
+              postSuppAlamat:
+                type: string
+                example: 'Long Text'
+        application/json: 
+          schema: 
+            type: object
+            properties: 
+              postSuppNama:
+                type: string
+                example: 'Supplier name'
+              postSuppKontak:
+                type: string
+                example: 'Contact name'
+              postSuppEmail:
+                type: string
+                example: 'valid@email.com'
+              postSuppTelp:
+                type: string
+                example: '023456789'
+              postSuppAlamat:
+                type: string
+                example: 'Long Text'
+    requestBody-customer:
+      description: "Form customer data."
+      required: true
+      content: 
+        application/x-www-form-urlencoded: 
+          schema: 
+            type: object
+            properties: 
+              postSuppNama:
+                type: string
+                example: 'Supplier name'
+              postSuppKontak:
+                type: string
+                example: 'Contact name'
+              postSuppEmail:
+                type: string
+                example: 'valid@email.com'
+              postSuppTelp:
+                type: string
+                example: '023456789'
+              postSuppAlamat:
+                type: string
+                example: 'Long Text'
+        application/json: 
+          schema: 
+            type: object
+            properties: 
+              postSuppNama:
+                type: string
+                example: 'Supplier name'
+              postSuppKontak:
+                type: string
+                example: 'Contact name'
+              postSuppEmail:
+                type: string
+                example: 'valid@email.com'
+              postSuppTelp:
+                type: string
+                example: '023456789'
+              postSuppAlamat:
+                type: string
+                example: 'Long Text'
