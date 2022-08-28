@@ -8,8 +8,9 @@
         <title>Resume</title>
         <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <!-- <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
@@ -28,155 +29,332 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang Saya</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Pengalaman</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Pendidikan</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Pendidikan</a></li> -->
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Keterampilan</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Pengalaman</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
+            <!-- Home-->
+            <section class="home-section d-flex flex-row align-items-center pt-5" id="home" style="height: 100vh;">
+                <div class="home-content pl-5 pr-3">
+                    <h3>Hallo! Saya </h3>
+                    <h1>Joshua <span class="last-name">Wicaksono</span></h1>
+                    <h3 class="float-right">Web Programmer asal Kota Salatiga</h3>
+                </div>
+                <img src="../assets/img/cartoon-profile2.png" class="img-fluid mt-5 ml-5" style="max-height: 600px; width: auto; -webkit-transform: scaleX(-1); transform: scaleX(-1);" alt="">
+            </section>
+
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Joshua
-                        <span class="text-info">Wicaksono</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        Salatiga, Jawa Tengah · INDONESIA · 50733 · <a class="text-info">+62 822 4283 4293 (WA & Telegram)</a> · 
-                        <a class="text-danger" href="mailto:wicaksonojoshua@gmail.com">wicaksonojoshua@gmail.com</a>
+                    <h5 class="section-subtitle text-white">Tentang Saya</h5>
+                    <h3 class="section-title text-white mb-3">IZINKAN SAYA MEMPERKENALKAN DIRI</h3>
+                    <p class="lead">Saya merupakan web programmer asal Salatiga, Jawa Tengah, dengan pengalaman ±2 tahun sebagai 
+                        di bidang Web Development. Memiliki kemampuan dalam bidang pengembangan website seperti Bahasa Pemrograman PHP, dengan menggunakan CodeIgniter Framework, Javascript, JQuery library, AJAX, JSON, Web Services dengan pola REST, OAS3, JSON Web Token, Git dan Github, dan beberapa kemampuan untuk mengguna <i>tools</i> sebagai alat pembantu dalam bidang <i>Web Development</i> ini.
+                    </p>
+                    <p class="lead mb-4">Saya mencari peran atau posisi dimana saya dapat berkontribusi dengan semua kemampuan 
+                        saya, dan di waktu yang sama Saya dapat belajar dan berkembang dari tim berpengalaman.
+                    </p>
+
+                    <h3 class="section-title text-white">Saya lulusan dari</h3>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+                        <div class="pl-3 flex-grow-1">
+                            <h5 class="text-white">SMK Telekomunikasi Tunas Harapan</h5>
+                            <div>jurusan <b>Software Engineering</b>, lulus pada tahun 2016</div>
+                        </div>
+                        <div class="pl-3 flex-shrink-0"><span class="font-weight-bold text-danger">2013 - 2016</span></div>
                     </div>
-                    <p class="lead mb-5">Saya dalah web developer dari Salatiga, Indonesia, lebih sering berkerja sebagai back-end developer. Tugas saya adalah membangun dan memastikan website berfungsi dengan lancar.</p>
-                    <div class="social-icons">
-                        <a class="social-icon" target="_blank" href="https://www.linkedin.com/in/joshua-wicaksono-3999a1173/"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" target="_blank" href="github.com/wijoc/"><i class="fab fa-github"></i></a>
-                        <a class="float-right btn btn-info btn-lg" style="border-radius: 15px;" target="_blank" href="../assets/CV_Joshua_Wicaksono_id.pdf"><i class="fas fa-download"></i>&nbsp; Download CV</a>
+
+                    <div class="row">
+                        <div class="col-12 col-md-8"> 
+                            <h3 class="section-title text-white mb-3">Hubungi Saya</h3>
+                            <div class="row m-auto">
+                              <div class="col-12 contact-box mb-3 py-1 d-flex flex-row">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span class="px-3 py-2">
+                                  <h6 class="text-white">E-Mail</h6>
+                                  <a>wicaksonojoshua@gmail.com</a>
+                                </span>
+                              </div>
+                              <div class="col-12 contact-box mb-3 py-1 d-flex flex-row">
+                                <i class="fa-solid fa-square-phone"></i>
+                                <span class="px-3 py-2">
+                                  <h6 class="text-white">Phone (Telegram / Whatsapp)</h6>
+                                  <a>+62 822 4283 4293</a>
+                                </span>
+                              </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-4 text-center">
+                            <h3 class="section-title text-white mb-3">Terhubung dengan saya</h3>
+                            <div class="row">
+                                <div class="col-6 socmed-box">
+                                    <a href="" class="border border-secondary">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 socmed-box">
+                                    <a href="" class="border border-secondary">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Pengalaman</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Developer - Unicoland.com</h3>
-                            <div class="subheading mb-3">unicoland.com</div>
-                            <p> a. Membuat and deploy web-base company profile untukk unicoland.com menggunakan bootstrap v5 css framework. </p>
-                            <p> b. Membuat katalog produk October 2021.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-danger">September 2021 - Oktober 2021</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Developer - CV Katalis Indonesia</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p> a. Migrasi ke hosting baru dan membuat database menggunakan mySQL berdasar kebutuhan website lazetta.id </p>
-                            <p> b. Membuat website untuk UMKM Rembang Expo, menggunakan PHP dengan Framework CI3 dan MySQL.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-danger">Januari 2021 - Februari 2021</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - Aplikasi Penghitungan Nilai Keandalan</h3>
-                            <div class="subheading mb-3">-</div>
-                            <p> Bekerja dalam pembuatan aplikasi pengolahan data hujan menjadi data keandalan dan evapotranspirasi dengan metode penghitungan Penman mod, MOCK, dan NRECA.</p>
-                            <p> Bertanggung jawab dalam pembuatan flowchart sampai penerapan kedalam bahasa pemrograman. Dibangun dengan bahasa PHP 7.2 dengan framework CI3 dan dbms mySQL</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Mei 2020 - Juli 2020</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - E-Tracking Perizinan</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p>Berkerjasama dengan programmer dari CV Katalis Indonesia dalam melakukan penyesesuaian, pembaruan fitur, dan integrasi dengan aplikasi SIAP Jateng melalui restAPI yang tersedia menggunakan bahasa php 5.6</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Agustus 2019 - Februari 2020</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - Aplikasi DanaBOS</h3>
-                            <div class="subheading mb-3">-</div>
-                            <p>a. Tutoring mahasiswa dalam proses debuging dan penulisan code menggunakan php 7 dengan framework CI3.</p>
-                            <p>b. Melakukan manual test menggunakan data dummy, dan penambahan fitur sesuai permintaan mahasiswa.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Oktober 2019 - Desember 2019</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Junior Web Programmer - CV Katalis Indonesia</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p>Bertugas dalam pembuatan flowchart sampai pembuatan website berdasar kebutuhan client. Project yang pernah dilakukan :</p>
-                            <p>a. Aplikasi Point of Sales</p>
-                            <p>b. Aplikasi E-SPT Dinas LHK Jawa Tengah</p>
-                            <p>c. Aplikasi E-Tracking Izin Dinas ESDM Jawa Tengah</p>
-                            <p>d. Sistem Informasi Dashboard Pemkab. Magelang</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Oktober 2018 - Maret 2019</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Operator Produksi - PT. Evercoss Technology Indonesia</h3>
-                            <div class="subheading mb-3">PT. Evercoss Technology Indonesia</div>
-                            <p>Berkerja sebagai operator perakitan handphone selama 6 bulan dan bekerja sebagai operator pengepakan selama 18 bulan berikutnya. Bertanggung jawab dalam pengepakan dan pengiriman dari bagian pengepakan ke gudang barang jadi</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2016 - September 2019</span></div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
+
             <!-- Education-->
-            <section class="resume-section" id="education">
+            <!-- <section class="resume-section" id="education">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Pendidikan</h2>
+                    <h2 class="mb-5">Education</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Telekomunikasi Tunas Harapan Vocational Highschool</h3>
-                            <div class="subheading mb-3">Rekayasa Perangkat Lunak</div>
-                            <!-- <div>Computer Science - Web Development Track</div>
-                            <p>GPA: 3.23</p> -->
+                            <div class="subheading mb-3">Software Engineering</div>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">2013 - 2016</span></div>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
+            <hr class="m-0" /> -->
+
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Keterampilan</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item img-fluid"><img src="../assets/icon/282806_jquery_logo_icon.ico" alt="" style="height: auto; width: 85px;"></li>
-                        <li class="list-inline-item"><i class="fab fa-php"></i></li>
-                        <li class="list-inline-item img-fluid"><img src="../assets/icon/1916035_codeigniter_logo_media_social_icon.ico" alt="" style="height: 35px; width: auto;"></li>
-                        <li class="list-inline-item img-fluid"><img src="../assets/icon/4691303_mysql_icon.ico" alt="" style="height: auto; width: 65px;"></li>
-                    </ul>
-                    <div class="subheading mb-3">Bahasa</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            Indonesia [Native]
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            Javanese [Native]
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            English [Conversation]
-                        </li>
-                    </ul>
+                    <h5 class="section-subtitle">Keterampilan</h5>
+                    <h3 class="section-title mb-4">Kememapuan Utama Saya</h3>
+                    <div class="row">
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-primary">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-primary">
+                              <h3 class="text-center">
+                                <i class="fa-brands fa-php text-white skill-icon-sm"></i>
+                              </h3>
+                            </div>
+                          </div>
+                          <h2 class="text-center">PHP</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Mampu menggunakan bahasa pemrograman PHP, baik itu <i>native / procedural</i> ataupun menggunakan
+                                framework Codeigniter 3.</p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-warning">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-warning text-white">
+                              <i class="fa-brands fa-square-js skill-icon-lg"></i>
+                            </div>
+                          </div>
+                          <h2 class="text-center">Javascript</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p> Mampu menggunakan Javascript menggunakan <i>vanilla javascript</i> dan/atau menggunakan
+                                <i>library</i> JQuery.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-success">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-success text-white">
+                              <i class="fa-solid fa-database skill-icon"></i>
+                            </div>
+                          </div>
+                          <h2 class="text-center">RDBMS</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Memiliki pengalaman menggunakan MySQL dan Postgres sebagai <i>relational database management
+                                system.</i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-info">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-info">
+                              <i class="fa-solid fa-code skill-icon"></i>
+                            </div>
+                          </div>
+                          <h3 class="text-center">Web Services</h3>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Membangun <i>web services</i> menggunakan pola arsitektur REST, autentikasi menggunakan <i>JWT</i>
+                                dan dokumentasi RESTapi menggunakan OpenAPI.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h5 class="section-subtitle">Perjalanan</h5>
+                    <h3 class="section-title mb-3">Pengalaman Kerja</h3>
+                    <div class="row">
+                      <ul class="timeline">
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">22</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Web Programmer</h5>
+                                <h6>PT Callvinz Mototech (Callistech)</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">Maret 2022 - Juni 2022</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Membuat interface (Front-end) Program Internal berbasis Web PT. Callvinz Mototech (Callistech)
+                                 menggunakan Vue.Js dan mengintegrasikan dengan microservice menggunakan PHP & dengan framework Lumen.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">21</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>di Unicoland.com</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">September 2021 - Oktober 2021</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Membuat dan deployment Website Company Profile untuk Unicoland.com, Membuat Catalog Produk untuk 
+                                bulan oktober 2021 untuk unicoland.com.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance Programmer</h5>
+                                <h6>di CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">Januari 2021 - Februari 2021</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Migrasi dan pembuatan database menggunakan mySQL berdasar spesifikasi aplikasi lazetta.id. </p>
+                              <p>Pembuatan website rembang ukm expo, menggunakan php 7.4 dengan framework CI 3 dan rdbms mySQL.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">20</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>Aplikasi Penghitungan Data Keandalan</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">May 2020 - July 2020</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Bekerja dalam pembuatan aplikasi pengolahan data keandalan dengan metode Penman mod, MOCK, dan NRECA.</p>
+                              <p>Bertanggung jawab dalam pembuatan flowchart sampai penerapan kedalam bahasa pemrograman. Dibangun dengan bahasa PHP 7.2 dengan framework CI3 dan dbms mySQL.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">19</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance Web Developer</h5>
+                                <h6>di CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">Agustus 2019 - Februari 2020</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Berkerjasama dengan programmer dari CV Katalis Indonesia dalam melakukan penyesesuaian, pembaruan fitur, dan integrasi dengan aplikasi SIAP Jateng melalui restAPI yang tersedia menggunakan bahasa php 5.6</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>DanaBOS Application</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">Oktober 2019 - Desember 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>- Tutoring mahasiswa dalam proses debuging dan penulisan code menggunakan php 7 dengan framework CI3.</p>
+                              <p>- Penambahan fitur dan manual testing dengan data dummy. </p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Junior Web Programmer</h5>
+                                <h6>at CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">January 2018 - March 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Bertugas dalam pembuatan flowchart sampai pembuatan website berdasar kebutuhan client. Project yang pernah dilakukan :</p>
+                              <p>a. Aplikasi Point of Sales</p>
+                              <p>b. Aplikasi E-SPT Dinas LHK Jawa Tengah </p>
+                              <p>c. Aplikasi E-Tracking Izin Dinas ESDM Jawa Tengah</p>
+                              <p>d. Sistem Informasi Dashboard Pemkab. Magelang</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">16</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Operator Produksi</h5>
+                                <h6>di PT Evercoss Technology Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">September 2016 - September 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Berkerja sebagai operator perakitan handphone selama 6 bulan dan bekerja sebagai operator pengepakan selama 18 bulan berikutnya. Bertanggung jawab dalam pengepakan dan pengiriman dari bagian pengepakan ke gudang barang jadi.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge">
+                            <span class="small fw-bold"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
             <!-- Portfolio-->
             <section class="resume-section" id="portfolio">
                 <div class="resume-section-content">

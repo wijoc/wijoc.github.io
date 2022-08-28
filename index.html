@@ -8,8 +8,9 @@
         <title>Resume</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <!-- <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
@@ -28,154 +29,335 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li> -->
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
+            <!-- Home-->
+            <section class="home-section d-flex flex-row align-items-center pt-5" id="home" style="height: 100vh;">
+                <div class="home-content pl-5 pr-3">
+                    <h3>Hi! I am </h3>
+                    <h1>Joshua <span class="last-name">Wicaksono</span></h1>
+                    <h3 class="float-right">a Web Programmer based in Indonesia</h3>
+                </div>
+                <img src="assets/img/cartoon-profile2.png" class="img-fluid mt-5 ml-5" style="max-height: 600px; width: auto; -webkit-transform: scaleX(-1); transform: scaleX(-1);" alt="">
+            </section>
+
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Joshua
-                        <span class="text-info">Wicaksono</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        Salatiga, Jawa Tengah · INDONESIA · 50733 · <a class="text-info">+62 822 4283 4293 (WA & Telegram)</a> · 
-                        <a class="text-danger" href="mailto:wicaksonojoshua@gmail.com">wicaksonojoshua@gmail.com</a>
+                    <h5 class="section-subtitle text-white">About Me</h5>
+                    <h3 class="section-title text-white mb-3">LET ME INTRODUCE MYSELF</h3>
+                    <p class="lead">I am a web programmer based in Salatiga, Indonesia, with ±2 years experiences in web development.
+                      I have the ability in web developing such as PHP programming language, with CodeIgniter Framework, Javascript, JQuery library, AJAX, JSON, Web Services REST pattern, OAS3, JSON Web Token, Git dan Github, 
+                      and several other tools as supports related to this field.
+                    </p>
+                    <p class="lead mb-4">
+                      I am looking for a role where I could contribute to the best of my ability while helping me grow and learn from an experienced team.
+                    </p>
+
+                    <h3 class="section-title text-white">Graduated from</h3>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+                        <div class="pl-3 flex-grow-1">
+                            <h5 class="text-white">Telekomunikasi Tunas Harapan Vocational Highschool</h5>
+                            <div>majoring in <b>Software Engineering</b>, graduated in 2016</div>
+                        </div>
+                        <div class="pl-3 flex-shrink-0"><span class="font-weight-bold text-danger">2013 - 2016</span></div>
                     </div>
-                    <p class="lead mb-5">I'm web developer based on Salatiga, Indonesia, mostly working as back-end developer. My job is to build a website and make sure it is functional.</p>
-                    <div class="social-icons">
-                        <a class="social-icon" target="_blank" href="https://www.linkedin.com/in/joshua-wicaksono-3999a1173/"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" target="_blank" href="github.com/wijoc/"><i class="fab fa-github"></i></a>
-                        <a class="float-right btn btn-info btn-lg" style="border-radius: 15px;" target="_blank" href="assets/CV_Joshua_Wicaksono_eng.pdf"><i class="fas fa-download"></i>&nbsp; Download CV</a>
+
+                    <div class="row">
+                        <div class="col-12 col-md-8"> 
+                            <h3 class="section-title text-white mb-3">Contact</h3>
+                            <div class="row m-auto">
+                              <div class="col-12 contact-box mb-3 py-1 d-flex flex-row">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span class="px-3 py-2">
+                                  <h6 class="text-white">E-Mail</h6>
+                                  <a>wicaksonojoshua@gmail.com</a>
+                                </span>
+                              </div>
+                              <div class="col-12 contact-box mb-3 py-1 d-flex flex-row">
+                                <i class="fa-solid fa-square-phone"></i>
+                                <span class="px-3 py-2">
+                                  <h6 class="text-white">Phone (Telegram / Whatsapp)</h6>
+                                  <a>+62 822 4283 4293</a>
+                                </span>
+                              </div>
+                            </div> 
+                        </div>
+                        <div class="col-12 col-md-4 text-center">
+                            <h3 class="section-title text-white mb-3">LET's Connect</h3>
+                            <div class="row">
+                                <div class="col-6 socmed-box">
+                                    <a href="" class="border border-secondary">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 socmed-box">
+                                    <a href="" class="border border-secondary">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Developer - Unicoland.com</h3>
-                            <div class="subheading mb-3">unicoland.com</div>
-                            <p> a. Create and deploy web-base company profile for unicoland.com bussiness entities using bootstrap v5 css framework. </p>
-                            <p> b. Create October 2021 products catalogs.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-danger">September 2021 - October 2021</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Developer - CV Katalis Indonesia</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p> a. Migrate to new hosting server and create database using mysql depends on lazetta.id necessity. </p>
-                            <p> b. Create website (Fullstack) for Rembang Micro, Small and Medium Enterprises (MSME) Expo, using PHP 8 with CI 3 Framework and MySQL.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-danger">January 2021 - February 2021</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - Effective Discharge Reliability Data Processing App</h3>
-                            <div class="subheading mb-3">-</div>
-                            <p>Building an evapotranspiration and effective discharge reliability data processing applications using PENMAN Mod, FJ MOCK, and NRECA as calculation method.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">May 2020 - July 2020</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - "E-Tracking Perizinan" App</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p>Working as freelance programmer for CV. Katalis Indonesia. Responsible for adjustment, features addition, and integration between SIAP Jateng Apps and E-Tracking Izin using availabe restAPI. Using php 5.6 and javascript as programming language</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2019 - February 2020</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Freelance Web Dev - "DanaBOS" Application</h3>
-                            <div class="subheading mb-3">-</div>
-                            <p> a. Do manual test using dummy data, and feature addition on (university) student demand.</p>
-                            <p> b. Assist (university)` student in the process of debuging and writing code using php 7 with the CI3 framework.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">October 2019 - December 2019</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Junior Web Programmer - CV Katalis Indonesia</h3>
-                            <div class="subheading mb-3">CV Katalis Indonesia</div>
-                            <p>Responsible for building a website from create flowchart to development proses depends on clients necessity. Projects tat have been done :</p>
-                            <p>a. Point of Sales</p>
-                            <p>b. E-SPT App for Environments and Forestry of Cetral Java Province Office </p>
-                            <p>c. E-Tracking Izin App for Energy and Mineral Resources of Cetral Java Province Office</p>
-                            <p>d. Magelang District Goverment Dashboard App</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">October 2018 - March 2019</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Production Operator - PT. Evercoss Technology Indonesia</h3>
-                            <div class="subheading mb-3">PT. Evercoss Technology Indonesia</div>
-                            <p>Working as mobile phone assembly operator for the first 6 month, and as packaging operator for 18 month. Rresponsible for packing mobile phones and shipping to warehouses</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2016 - September 2019</span></div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
+
             <!-- Education-->
-            <section class="resume-section" id="education">
+            <!-- <section class="resume-section" id="education">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Education</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Telekomunikasi Tunas Harapan Vocational Highschool</h3>
                             <div class="subheading mb-3">Software Engineering</div>
-                            <!-- <div>Computer Science - Web Development Track</div>
-                            <p>GPA: 3.23</p> -->
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">2013 - 2016</span></div>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
+            <hr class="m-0" /> -->
+
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item img-fluid"><img src="assets/icon/282806_jquery_logo_icon.ico" alt="" style="height: auto; width: 85px;"></li>
-                        <li class="list-inline-item"><i class="fab fa-php"></i></li>
-                        <li class="list-inline-item img-fluid"><img src="assets/icon/1916035_codeigniter_logo_media_social_icon.ico" alt="" style="height: 35px; width: auto;"></li>
-                        <li class="list-inline-item img-fluid"><img src="assets/icon/4691303_mysql_icon.ico" alt="" style="height: auto; width: 65px;"></li>
-                    </ul>
-                    <div class="subheading mb-3">Languages</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            Indonesia [Native]
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            Javanese [Native]
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-minus"></i></span>
-                            English [Conversation]
-                        </li>
-                    </ul>
+                    <h5 class="section-subtitle">SKILLS</h5>
+                    <h3 class="section-title mb-4">HERE ARE MY KEY SKILLS</h3>
+                    <div class="row">
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-primary">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-primary">
+                              <h3 class="text-center">
+                                <i class="fa-brands fa-php text-white skill-icon-sm"></i>
+                              </h3>
+                            </div>
+                          </div>
+                          <h2 class="text-center">PHP</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Able to use PHP as a programming language, 
+                              either native / procedural or using the Codeigniter 3 framework</p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-warning">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-warning text-white">
+                              <i class="fa-brands fa-square-js skill-icon-lg"></i>
+                            </div>
+                          </div>
+                          <h2 class="text-center">Javascript</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Able to use Javascript for web development using vanilla javascript and/or using library JQuery.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-success">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-success text-white">
+                              <i class="fa-solid fa-database skill-icon"></i>
+                            </div>
+                          </div>
+                          <h2 class="text-center">RDBMS</h2>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>
+                              Have experience using MySQL and PostgreSQL as relational database management system.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 col-md-3 mt-5 mb-3">
+                        <div class="card h-100 p-2 card-skill cs-info">
+                          <div class="row justify-content-center">
+                            <div class="hexagon-box hb-info">
+                              <i class="fa-solid fa-code skill-icon"></i>
+                            </div>
+                          </div>
+                          <h3 class="text-center">Web Services</h3>
+                          <div class="h-100 d-flex align-items-right">
+                            <p>Create web services with REST architectural style, authentication using JWT and documentation using OpenAPI.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
+
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h5 class="section-subtitle">Journey</h5>
+                    <h3 class="section-title mb-3">Work Experience</h3>
+                    <div class="row">
+                      <ul class="timeline">
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">22</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Web Programmer</h5>
+                                <h6>PT Callvinz Mototech (Callistech)</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">March 2022 - June 2022</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Responsible of creating Web Interface for Callvinz Mototech
+                                (Callistech)'s internal program, using VueJs 2 with vuex, vue-router, and
+                                  couple more plugins. And integrating Front-end to Microservices Back-end 
+                                using PHP 7 with Lumen Framework</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">21</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>at Unicoland.com</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">September 2021 - October 2021</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>- Create and deploy Web base company profile for Unicoland.com.</p>
+                              <p>- Create October 2021 product catalog for Unicoland.com</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance Programmer</h5>
+                                <h6>at CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">January 2021 - February 2021</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>- Migrate to new hosting server and create database using mysql depends on lazetta.id necessity. </p>
+                              <p>- Create website (Fullstack) for Rembang Micro, Small and Medium Enterprises (MSME) Expo, using PHP 7.4 with CI 3 Framework and MySQL.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">20</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>Effective Discharge Reliability Data processing App</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">May 2020 - July 2020</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Building an evapotranspiration and effective discharge processing applications using PENMAN Mod, FJ MOCK, and NRECA as calculation method.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">19</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance Web Developer</h5>
+                                <h6>at CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">August 2019 - February 2020</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Working as freelance programmer for CV. Katalis Indonesia. 
+                                Responsible for adjustment, features addition, and integration between SIAP Jateng Apps 
+                                and E-Tracking using availabe restAPI. Using php 5.6 and javascript as programming language</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Freelance</h5>
+                                <h6>DanaBOS Application</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">October 2019 - December 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>- Do manual test using dummy data, and feature addition on (university) student demand.</p>
+                              <p>- Assist (university)` student in the process of debuging and writing code using php 7 with the CI3 framework.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Junior Web Programmer</h5>
+                                <h6>at CV Katalis Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">January 2018 - March 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Responsible for building a website from create flowchart to development proses depends on clients necessity. Projects tat have been done :</p>
+                              <p>a. Point of Sales</p>
+                              <p>b. E-SPT App for Environments and Forestry of Cetral Java Province Office </p>
+                              <p>c. E-Tracking Izin App for Energy and Mineral Resources of Cetral Java Province Office</p>
+                              <p>d. Magelang District Goverment Dashboard App</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info">
+                            <span class="small fw-bold">16</span>
+                          </div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading row">
+                              <div class="timeline-title col-sm-12 col-md">
+                                <h5>Production Operator</h5>
+                                <h6>at PT Evercoss Technology Indonesia</h6>
+                              </div>
+                              <p class="small text-right text-danger col-sm-12 col-md">September 2016 - September 2019</p>
+                            </div>
+                            <div class="timeline-body border-top pt-1">
+                              <p>Working as mobile phone assembly operator for the first 6 month, and as packaging operator for 18 month. 
+                                Responsible for packing mobile phones and shipping to warehouses.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge">
+                            <span class="small fw-bold"></span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
             <!-- Portfolio-->
             <section class="resume-section" id="portfolio">
                 <div class="resume-section-content">
@@ -195,7 +377,7 @@
                                     <p class="card-text text-justify">Application for calculating evapotranspiration and effective discharge using several methods.</p>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row justify-content-end">
+                                    <div class="row justify-content-right">
                                         <!-- <a target="_blank" href="http://demozoe.epizy.com/GA/" class="btn btn-warning mr-1" data-toggle="tooltip" data-placement="top" title="Demo Apps"><i class="fas fa-tv"></i></a> -->
                                         <a href="detail_ga.html" class="btn btn-info font-weight-bold" data-toggle="tooltip" data-placement="top" title="Detail Apps">Detail</a>
                                     </div>
@@ -215,7 +397,7 @@
                                     <p class="card-text text-justify">Website-based POS applications, built using php 8 with codeigniter framework 3.</p>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row justify-content-end">
+                                    <div class="row justify-content-right">
                                         <a target="_blank" href="https://github.com/wijoc/Sistem_PoS" class="btn btn-secondary mr-1" data-toggle="tooltip" data-placement="top" title="POS Github Repo"><i class="fab fa-github"></i></a>
                                         <!-- <a target="_blank" href="http://demozoe.epizy.com/pos/" class="btn btn-warning mr-1" data-toggle="tooltip" data-placement="top" title="Demo POS"><i class="fas fa-tv"></i></a> -->
                                         <a href="detail_pos.html" class="btn btn-info font-weight-bold" data-toggle="tooltip" data-placement="top" title="Detail POS">Detail</a>
@@ -236,7 +418,7 @@
                                     <p class="card-text text-justify">Web-base application for tracking mining operation license approval proses in Department of Energy and Mineral Resource of Central Java </p>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row justify-content-end">
+                                    <div class="row justify-content-right">
                                         <a href="detail_et.html" class="btn btn-info font-weight-bold" data-toggle="tooltip" data-placement="top" title="Detail E-Tracking">Detail</a>
                                     </div>
                                 </div>
@@ -256,7 +438,7 @@
                                         using bootstrap v5 css framework and "Gp." template.</p>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row justify-content-end">
+                                    <div class="row justify-content-right">
                                         <a target="_blank" href="http://unicoland.epizy.com" class="btn btn-warning font-weight-bold" data-toggle="tooltip" data-placement="top" title="Demo Unicoland"><i class="fas fa-tv"></i></a>
                                     </div>
                                 </div>
